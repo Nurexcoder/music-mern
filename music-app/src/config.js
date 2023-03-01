@@ -1,1 +1,1 @@
-export const baseUrl="http://localhost:5000"
+export const baseUrl="https://mern-backend-97k3.onrender.com"

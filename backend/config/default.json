@@ -1,6 +1,0 @@
-{
-    "mongoURI":
-      "mongodb+srv://ahmed_coder:121121@cluster0.s7unvyf.mongodb.net/?retryWrites=true&w=majority",
-      "localUrl":"mongodb://localhost:27017/music-app",
-      "sec":"asdfsec"
-  }

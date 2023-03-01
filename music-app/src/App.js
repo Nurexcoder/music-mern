@@ -8,7 +8,22 @@ import { useEffect, useState } from "react";
 import MusicList from "./components/MusicList";
 import Navbar from "./components/Navbar";
 import { baseUrl } from "./config";
+import styled from "styled-components";
 
+const PleaseLogin = styled.div`
+  height: 100%;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+const Text = styled.h2`
+  margin: 0;
+  font-size: 2rem;
+  font-family: 'Courier New', Courier, monospace;
+`;
+const Image = styled.img``;
 function App() {
   const [user, setUser] = useState();
   const [rows, setRows] = useState([]);
@@ -28,6 +43,7 @@ function App() {
           name: music.name,
           song: music.song,
           artist: music.artist,
+          description:music.description,
           coverAlbum: music.coverAlbum,
           id: music._id,
         });
@@ -50,7 +66,19 @@ function App() {
   return (
     <div>
       <Navbar user={user} setUser={setUser} getSong={getSong} />
-      <MusicList user={user} setUser={setUser} getSong={getSong} rows={rows} />
+      {user ? (
+        <MusicList
+          user={user}
+          setUser={setUser}
+          getSong={getSong}
+          rows={rows}
+        />
+      ) : (
+        <PleaseLogin>
+          <Text>Please Login first</Text>
+          <Image src="/error.gif" />
+        </PleaseLogin>
+      )}
     </div>
   );
 }

@@ -169,17 +169,18 @@ export default function MusicList({ rows, getSong }) {
             </Typography>
           </CardContent>
           <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-            <IconButton aria-label="previous">
+            {/* <IconButton aria-label="previous">
               {theme.direction === "rtl" ? (
                 <SkipNextIcon />
               ) : (
                 <SkipPreviousIcon />
               )}
-            </IconButton>
+            </IconButton> */}
             <IconButton
               onClick={() => {
                 setIsPlaying(!isPlaying);
               }}
+              disabled={!musicData}
               aria-label="play/pause"
             >
               {isPlaying ? (
@@ -188,19 +189,19 @@ export default function MusicList({ rows, getSong }) {
                 <PlayCircleIcon sx={{ height: 38, width: 38 }} />
               )}
             </IconButton>
-            <IconButton aria-label="next">
+            {/* <IconButton aria-label="next">
               {theme.direction === "rtl" ? (
                 <SkipPreviousIcon />
               ) : (
                 <SkipNextIcon />
               )}
-            </IconButton>
+            </IconButton> */}
           </Box>
         </CardContainer>
         <CardMedia
           component="img"
           sx={{ width: 200, height: 200 }}
-          image={musicData?.coverAlbum}
+          image={musicData ? musicData.coverAlbum : "/no-music.gif"}
           alt="Live from space album cover"
         />
       </Card>

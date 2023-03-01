@@ -61,7 +61,11 @@ export default function Navbar({ user, setUser, getSong }) {
         <LogoDiv>Music Player</LogoDiv>
         <ActionControler>
           {!user ? (
-            <Button onClick={() => handleModalOpen()} sx={{ minWidth: 100 }}>
+            <Button
+              onClick={() => handleModalOpen()}
+              sx={{ minWidth: 100, color: "white" }}
+              color="success"
+            >
               Sign In
             </Button>
           ) : (

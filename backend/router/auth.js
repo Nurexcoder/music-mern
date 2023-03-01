@@ -78,15 +78,5 @@ router.post("/login", async (req, res) => {
     res.status(400).json({ error: "Internal error occured" });
   }
 });
-// router.post("/getuser", fetchAdmin, async (req, res) => {
-//   try {
-//     userId = req.user.id;
-//     const user = await User.findById(userId).select("-password");
-//     res.send(user);
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(500).send("Internal error occured");
-//   }
-// });
 
 module.exports = router;
