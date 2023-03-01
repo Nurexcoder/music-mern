@@ -1,8 +1,4 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
 import { useEffect, useState } from "react";
 import MusicList from "./components/MusicList";

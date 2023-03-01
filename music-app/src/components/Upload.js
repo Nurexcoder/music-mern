@@ -3,8 +3,7 @@ import {
   Backdrop,
   Button,
   CircularProgress,
-  IconButton,
-  Input,
+ 
   InputAdornment,
   OutlinedInput,
   TextField,
@@ -157,10 +156,6 @@ const Upload = ({ setIsLogin, handleModalClose, setUser, getSong, user }) => {
     } catch (error) {
       console.log(error);
       setOpen(false);
-      // if (error.response.status === 400) {
-      //   Swal.fire("Incoorect  ", "Incoorect  password or Username", "error");
-      //   return;
-      // }
       handleModalClose();
       Swal.fire("Error", "Something went wrong", "error");
     }

@@ -3,7 +3,6 @@ import { Backdrop, Button, CircularProgress } from "@mui/material";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import PauseCircleIcon from "@mui/icons-material/PauseCircle";
 import { useEffect, useRef, useState } from "react";
-import useSound from "use-sound";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -11,9 +10,6 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
 import { baseUrl } from "../config";
 import styled from "styled-components";
 import { Delete, Edit } from "@mui/icons-material";
@@ -42,7 +38,7 @@ const CardContainer = styled(Box)`
 export default function MusicList({ rows, getSong }) {
   const [pageSize, setPageSize] = useState(20);
   // const [rows, setRows] = useState([]);
-  const [musicData, setMusicData] = useState("");
+  const [musicData, setMusicData] = useState();
   const audioElement = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [openBackdrop, setOpenBackdrop] = useState(false);
@@ -59,14 +55,16 @@ export default function MusicList({ rows, getSong }) {
         redirect: "follow",
       };
       setOpenBackdrop(true);
-      const jsonRes = await fetch(
-        "http://localhost:5000/music/" + id,
-        requestOptions
-      );
+      const jsonRes = await fetch(baseUrl + "/music/" + id, requestOptions);
       getSong();
+      if (id === musicData.id) {
+        setMusicData(null);
+        setIsPlaying(false)
+      }
       setOpenBackdrop(false);
       Swal.fire("Deleted", "Song deleted successfully", "success");
     } catch (error) {
+      setOpenBackdrop(false);
       Swal.fire("Error occured", "Something went wrong", "error");
     }
   };
@@ -82,7 +80,7 @@ export default function MusicList({ rows, getSong }) {
           onClick={() => {
             console.log(data);
             setMusicData(data?.row);
-            setIsPlaying(!isPlaying);
+            setIsPlaying(true);
           }}
         >
           {data?.row === musicData ? <PauseCircleIcon /> : <PlayCircleIcon />}
@@ -106,7 +104,7 @@ export default function MusicList({ rows, getSong }) {
           >
             <Delete />
           </Button>
-          <Button
+          {/* <Button
             onClick={() => {
               console.log(data);
               setMusicData(data?.row);
@@ -114,7 +112,7 @@ export default function MusicList({ rows, getSong }) {
             }}
           >
             <Edit />
-          </Button>
+          </Button> */}
         </>
       ),
     },

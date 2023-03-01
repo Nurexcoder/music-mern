@@ -9,7 +9,7 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 app.use(
-  express.urlencoded({ limit: "10mb", extended: true, parameterLimit: 50000 })
+  express.urlencoded({ limit: "20mb", extended: true, parameterLimit: 500000 })
 );
 connectDB();
 

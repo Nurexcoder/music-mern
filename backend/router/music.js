@@ -83,15 +83,15 @@ router.get("/", fetchUser, async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     console.log(req.params);
-    const music = await Music.findById(req.params.id);
-    if (!music) {
-      throw new Error("Invalid id");
-    } 
-    const musicRef = ref(storage, music.song);
-    await deleteObject(musicRef);
-    const coverRef = ref(storage, music.coverAlbum);
-    await deleteObject(coverRef);
-    music.delete();
+    // const music = await Music.findById(req.params.id);
+    // if (!music) {
+    //   throw new Error("Invalid id");
+    // }
+    await Music.findByIdAndDelete(req.params.id);
+    // const musicRef = ref(storage, music.song);
+    // await deleteObject(musicRef);
+    // const coverRef = ref(storage, music.coverAlbum);
+    // await deleteObject(coverRef);
 
     // await Music.findByIdAndDelete(req.params.id);
     res.status(200).json({ success: "File deleted" });
