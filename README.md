@@ -3,7 +3,7 @@
 
 A MERN stack project for crud music app with authentication
 
-##  🔗 Website Link [(Click Here)](https://audiofy-music-player-site.netlify.app/)
+##  🔗 Website Link [(Click Here)](https://lively-arithmetic-c40031.netlify.app/)
 
 
 ## 🚀 Quick Start
